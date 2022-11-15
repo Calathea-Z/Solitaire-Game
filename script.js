@@ -69,7 +69,7 @@ suits['hearts'] = [
 function shuffle(suit){
     let randomRange = 14
     for (let i = 0; i <= suit.length; i++){
-       console.log(`<----LOOP: ${i} ------>`);
+       //console.log(`<----LOOP: ${i} ------>`);
         let rando = Math.floor((Math.random() * (randomRange - 1)));     
         //console.log(`RANDOM NUMBER = ${rando}`);
         randomRange -= 1;
@@ -79,15 +79,23 @@ function shuffle(suit){
 shuffle(suits.hearts);
 
 function removeRandom (array) {
+    let shuffledArray = [];
     while(array.length) {
+        i=0;
+        i++;
         console.log(`---ARRAY LENGTH: ${array.length}---`)
         const random = Math.floor(Math.random() * array.length);
-        const shuffledArray = array.splice(random, 1)[0];
-         console.log(shuffledArray);
+        randomArrayElement = array.splice(random, 1)[0];
+        shuffledArray.splice(random,0,randomArrayElement);
+        //shuffledArray.push.apply(randomArrayElement);
+        //console.log(shuffledArray);
+        //console.log(randomArrayElement);
+        console.log(`SHUFFLED ARRAY - ${shuffledArray}`);
     }
+    return shuffledArray
 }
 
-removeRandom(suits.hearts);
+console.log(removeRandom(suits.hearts));
 
 
 
