@@ -66,36 +66,33 @@ suits['hearts'] = [
     ['Q','Heart'],
     ['K','Heart'],    
 ]
-function shuffle(suit){
-    let randomRange = 14
-    for (let i = 0; i <= suit.length; i++){
-       //console.log(`<----LOOP: ${i} ------>`);
-        let rando = Math.floor((Math.random() * (randomRange - 1)));     
-        //console.log(`RANDOM NUMBER = ${rando}`);
-        randomRange -= 1;
-        //console.log(`CARD AMOUNT = ${randomRange}`);
-    }
+function shuffle(){
+removeRandom(suits.spades);
+removeRandom(suits.clubs);
+removeRandom(suits.diamonds);
+removeRandom(suits.hearts);
 }
-shuffle(suits.hearts);
+(shuffle());
 
 function removeRandom (array) {
-    let shuffledArray = [];
+    //let shuffledArray = [];
     while(array.length) {
         i=0;
         i++;
-        console.log(`---ARRAY LENGTH: ${array.length}---`)
+        //console.log(`---ARRAY LENGTH: ${array.length}---`)
         const random = Math.floor(Math.random() * array.length);
         randomArrayElement = array.splice(random, 1)[0];
-        shuffledArray.splice(random,0,randomArrayElement);
+        cardDeck.splice(random,0,randomArrayElement);
         //shuffledArray.push.apply(randomArrayElement);
         //console.log(shuffledArray);
         //console.log(randomArrayElement);
-        console.log(`SHUFFLED ARRAY - ${shuffledArray}`);
+        //console.log(`SHUFFLED ARRAY - ${shuffledArray}`);
     }
-    return shuffledArray
+    return cardDeck
 }
+console.log(cardDeck);
 
-console.log(removeRandom(suits.hearts));
+//console.log(removeRandom(suits.hearts));
 
 
 
