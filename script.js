@@ -1,7 +1,25 @@
-//declare deck
+//Declare deck
 let cardDeck = [];
+//Declare game board variables.
+let stockStack = [];
+let wasteStack = [];
+// const gameBoard = [
+// let stackOne = [],
+// let stackTwo = [],
+// let stackThree = [],
+// let stackFour = [],
+// let stackFive = [],
+// let stackSix = [],
+// let stackSeven = [],
+// let spadeStack = [],
+// let clubStack = [],
+// let diamondStack = [],
+// let heartStack = [],
+// ];
+console.log(gameBoard);
 
-//declare suits
+
+//Declare suits
 let suits = [];
 suits['spades'] = [
     ['A','Spade'],
@@ -66,40 +84,46 @@ suits['hearts'] = [
     ['Q','Heart'],
     ['K','Heart'],    
 ]
+
 gameLoop();
 
 
 
 
-
-
-
+//Shuffles the deck. 
 function shuffleDeck(){
 randomizeSuit(suits.clubs);
 randomizeSuit(suits.diamonds);
 randomizeSuit(suits.hearts);
 randomizeSuit(suits.spades);
+};
 
-}
-
-
-
-
+//Shuffles each suit set. 
 function randomizeSuit(array){
     while(array.length){
         const random = Math.floor(Math.random() * array.length);
-        const randomTwo = Math.floor(Math.random() * 52);
-        console.log(randomTwo)
+        const randomTwo = Math.floor(Math.random() * 53);
         let randomArrayElement = array.splice(random, 1)[0];
         cardDeck.splice(randomTwo,0,randomArrayElement);
     }
     return cardDeck
+};
+
+function buildTable(){
+for (i = 0; i < 28; i ++){
+
+
+
 }
 
+
+}
+
+//Run game function.
 function gameLoop() {
     shuffleDeck();
     console.log(cardDeck);
-}
+};
 
 
 
