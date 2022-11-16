@@ -14,7 +14,7 @@ let spadeStack = [];
 let clubStack = [];
 let diamondStack = [];
 let heartStack = [];
-let gameBoard = [[stackOne], [stackTwo], [stackThree], [stackFour],
+let tableau = [[stackOne], [stackTwo], [stackThree], [stackFour],
                  [stackFive], [stackSix], [stackSeven]];
 
 
@@ -98,6 +98,7 @@ randomizeSuit(suits.spades);
 
 //Shuffles each suit set. 
 function randomizeSuit(array){
+    //console.log(`RANDOMIZE FUNCTION LENGTH = ${array.length}`)
     while(array.length){
         const random = Math.floor(Math.random() * array.length);
         const randomTwo = Math.floor(Math.random() * 53);
@@ -108,18 +109,18 @@ function randomizeSuit(array){
 };
 
 function buildTable(){
-    let cardNumber = 52;
+let cardNumber = 52;
     for (j = 0; j < 7; j++){
         for (i = (0 + j); i < 7; i ++){  
         //console.log(`-----LOOP ${i} ${cardDeck}----`);
         let tempHolderArray = cardDeck.splice((cardNumber-1),1);
-        console.log(`-----SPLICED VALUE: ${tempHolderArray}`);
-        gameBoard[i].splice([j],1,tempHolderArray);
-        console.log(`STACK${i+1}----: ${gameBoard[i]}`);
+        //console.log(`-----SPLICED VALUE: ${tempHolderArray}`);
+        tableau[i].splice([j],1,tempHolderArray);
+        //console.log(`STACK${i+1}----: ${gameBoard[i]}`);
         cardNumber--;
-     } 
-}
-     console.log(gameBoard);
+         }     
+    }
+    stockStack = cardDeck;
 }
 
 
@@ -128,14 +129,15 @@ function gameLoop() {
     shuffleDeck();
     console.log(`OG DECK - ${cardDeck}----`);
     buildTable();
-    console.log(`AFTER DECK - ${cardDeck}----`);
-    console.log(`STACK 1 -${gameBoard[0]}`);
-    console.log(`STACK 2 -${gameBoard[1]}`);
-    console.log(`STACK 3 -${gameBoard[2]}`);
-    console.log(`STACK 4 -${gameBoard[3]}`);
-    console.log(`STACK 5 -${gameBoard[4]}`);
-    console.log(`STACK 6 -${gameBoard[5]}`);
-    console.log(`STACK 7 -${gameBoard[6]}`);
+    console.log
+    console.log(`STOCK STACK - ${stockStack}----`);
+    console.log(`STACK 1 -${tableau[0]}`);
+    console.log(`STACK 2 -${tableau[1]}`);
+    console.log(`STACK 3 -${tableau[2]}`);
+    console.log(`STACK 4 -${tableau[3]}`);
+    console.log(`STACK 5 -${tableau[4]}`);
+    console.log(`STACK 6 -${tableau[5]}`);
+    console.log(`STACK 7 -${tableau[6]}`);
 }
 
 

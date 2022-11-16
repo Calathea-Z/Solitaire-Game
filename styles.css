@@ -1,5 +1,40 @@
+html{
+    height: 100%;
+}
+
 body {
     background-color: rgb(227, 199, 252);
-    margin: 25% auto;
-    text-align: center;
+    height:100%;
+}
+
+div {
+    border: solid blue 2px;
+}
+
+.game-board {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.row-one {
+    display: flex;
+    justify-content: flex-start;
+    gap: 256px;
+}
+
+.row-one-left {
+    display: flex;
+    gap: 5px;
+}
+
+.row-one-right {
+    display: flex;
+    gap: 5px;
+}
+
+.row-two {
+    display:flex;
+    justify-content: center;
+    gap: 5px;
 }
