@@ -16,13 +16,11 @@ let diamondStack = [];
 let heartStack = [];
 let tableau = [[stackOne], [stackTwo], [stackThree], [stackFour],
                  [stackFive], [stackSix], [stackSeven]];
-                 
-//Grabbing the card images 
 
 //Declare suits
 let suits = [];
 suits['spades'] = [
-    ['A','Spade', ],
+    ['A','Spade','/playing_card_images/back_side.png' ],
     ['2', 'Spade'],
     ['3', 'Spade'],
     ['4', 'Spade'],
@@ -82,7 +80,19 @@ suits['hearts'] = [
     ['K','Heart'],    
 ]
 
-
+// class Card { constructor (suit, color, number){
+//         suit = suit;
+//         color = color;
+//         number = number;
+//     }
+//     color () {
+//         if (this.suit === Heart || this.suit === Diamond){
+//             color = 'red';
+//         }else {
+//             color = 'black';
+//         }
+//     }
+// }
 runGame();
 
 
@@ -110,8 +120,8 @@ function randomizeSuit(array){
 
 function buildStacks(){
 let cardNumber = 52;
-    for (j = 0; j < 7; j++){
-        for (i = (0 + j); i < 7; i ++){  
+    for (let j = 0; j < 7; j++){
+        for (let i = (0 + j); i < 7; i ++){  
         //console.log(`-----LOOP ${i} ${cardDeck}----`);
         let tempHolderArray = cardDeck.splice((cardNumber-1),1);
         //console.log(`-----SPLICED VALUE: ${tempHolderArray}`);
@@ -124,15 +134,36 @@ stockStack = cardDeck;
 }
 
 function buildUI(){
+    for(let i=0; i <cardDeck.length; i++){
+        console.log(cardDeck.length);
+        let emoji = '';
+        let color = '';
+        div = document.createElement('div')
+        div.className = 'card-stack-area';
 
+        if(cardDeck[i][1] === 'Diamond'){
+            emoji = '♦️';
+            color = 'red';
+        }else if (cardDeck[i][1] === 'Spade'){
+            emoji = '♠️';
+            color = 'black';
+        }else if (cardDeck[i][1] === 'Heart'){
+            emoji = '♥️';
+            color = 'red';
+        }else {
+            emoji = '♣️';
+            color = 'black'
+        }
+        div.innerHTML = (`${cardDeck[i][0]} ${emoji}`);
+        div.style.color = 'color';
+    }
 }
-
-
 
 //Run game function.
 function runGame() {
     shuffleDeck();
     console.log(`OG DECK - ${cardDeck}----`);
+    buildUI();
     buildStacks();
     console.log
     console.log(`STOCK STACK - ${stockStack}----`);
@@ -144,7 +175,6 @@ function runGame() {
     console.log(`STACK 6 -${tableau[5]}`);
     console.log(`STACK 7 -${tableau[6]}`);
 }
-
 
 
 
