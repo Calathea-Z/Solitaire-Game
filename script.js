@@ -110,12 +110,12 @@ function randomizeSuit(array){
 function buildTable(){
     let cardNumber = 52;
     for (j = 0; j < 7; j++){
-        for (i = (0 + j); i < 7; i ++){
+        for (i = (0 + j); i < 7; i ++){  
         //console.log(`-----LOOP ${i} ${cardDeck}----`);
         let tempHolderArray = cardDeck.splice((cardNumber-1),1);
         console.log(`-----SPLICED VALUE: ${tempHolderArray}`);
-        gameBoard[i].splice([i],1,tempHolderArray);
-        console.log(`-----STACK${i+1}: ${gameBoard[i]}`);
+        gameBoard[i].splice([j],1,tempHolderArray);
+        console.log(`STACK${i+1}----: ${gameBoard[i]}`);
         cardNumber--;
      } 
 }
@@ -129,7 +129,14 @@ function gameLoop() {
     console.log(`OG DECK - ${cardDeck}----`);
     buildTable();
     console.log(`AFTER DECK - ${cardDeck}----`);
-};
+    console.log(`STACK 1 -${gameBoard[0]}`);
+    console.log(`STACK 2 -${gameBoard[1]}`);
+    console.log(`STACK 3 -${gameBoard[2]}`);
+    console.log(`STACK 4 -${gameBoard[3]}`);
+    console.log(`STACK 5 -${gameBoard[4]}`);
+    console.log(`STACK 6 -${gameBoard[5]}`);
+    console.log(`STACK 7 -${gameBoard[6]}`);
+}
 
 
 
