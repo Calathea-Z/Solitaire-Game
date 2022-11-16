@@ -1,3 +1,5 @@
+
+
 //Declare deck
 let cardDeck = [];
 //Declare game board variables.
@@ -20,7 +22,7 @@ let tableau = [[stackOne], [stackTwo], [stackThree], [stackFour],
 //Declare suits
 let suits = [];
 suits['spades'] = [
-    ['A','Spade','/playing_card_images/back_side.png' ],
+    ['A', 'Spade'],
     ['2', 'Spade'],
     ['3', 'Spade'],
     ['4', 'Spade'],
@@ -133,37 +135,66 @@ let cardNumber = 52;
 stockStack = cardDeck;
 }
 
-function buildUI(){
-    for(let i=0; i <cardDeck.length; i++){
-        console.log(cardDeck.length);
-        let emoji = '';
-        let color = '';
-        div = document.createElement('div')
-        div.className = 'card-stack-area';
+function buildUI(deck){
+let temp = document.querySelector('#stock-stack');   
+    console.log(temp);
 
-        if(cardDeck[i][1] === 'Diamond'){
-            emoji = '♦️';
-            color = 'red';
-        }else if (cardDeck[i][1] === 'Spade'){
-            emoji = '♠️';
-            color = 'black';
-        }else if (cardDeck[i][1] === 'Heart'){
-            emoji = '♥️';
-            color = 'red';
-        }else {
-            emoji = '♣️';
-            color = 'black'
-        }
-        div.innerHTML = (`${cardDeck[i][0]} ${emoji}`);
-        div.style.color = 'color';
+    for(let i =0 ; i < deck.length; i++){
+    
+        console.log(deck.length);
+        console.log(cardDeck[i][0]);
+        console.log(cardDeck[i][1]);
+        
+        
+        let card = document.createElement('div');
+        let emoji = '';
+            if(deck[i][1] === 'Diamond'){
+                emoji = '♦️';
+                card.style.color = 'red';
+            }else if (deck[i][1] === 'Spade'){
+                emoji = '♠️';
+                card.style.color = 'black';
+            }else if (deck[i][1] === 'Heart'){
+                emoji = '♥️';
+                card.style.color = 'red';
+            }else if (deck[i][1] === 'Club'){
+                emoji = '♣️';
+                card.style.color = 'black'
+            }
+                card.innerText = (deck[i][0] + ' ' + emoji);
+                card.className = 'card-stack-area';
+                console.log(card.innerText);
+                console.log(card);
+                temp.appendChild(card);
     }
 }
+
+// function buildUI(deck){
+//     document.getElementById("deck").innerHTML = '';
+    
+//     for(let i = 0; i < cardDeck.length; i++){
+//         let card = document.createElement('div');
+//         let value = document.createElement('div');
+//         let suit = document.createElement('div');
+//         card.className = "card-stack-area";
+//         value.className = "card-stack-area";
+//         suit.className = "card-stack-area" + cardDeck[i][0];
+
+//         value.innerHTML = cardDeck[i][1];
+//         card.appendChild(value);
+//         card.appendChild(suit);
+
+//         document.getElementById("deck").appendChild(card);
+//     }
+        
+//     } 
+// }
 
 //Run game function.
 function runGame() {
     shuffleDeck();
     console.log(`OG DECK - ${cardDeck}----`);
-    buildUI();
+    buildUI(cardDeck);
     buildStacks();
     console.log
     console.log(`STOCK STACK - ${stockStack}----`);
