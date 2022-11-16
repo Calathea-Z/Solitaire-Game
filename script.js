@@ -1,5 +1,3 @@
-
-
 //Declare deck
 let cardDeck = [];
 //Declare game board variables.
@@ -19,7 +17,7 @@ let heartStack = [];
 let tableau = [[stackOne], [stackTwo], [stackThree], [stackFour],
                  [stackFive], [stackSix], [stackSeven]];
 
-//Declare suits
+//Declare suits // Check against these to win.
 let suits = [];
 suits['spades'] = [
     ['A', 'Spade'],
@@ -82,19 +80,6 @@ suits['hearts'] = [
     ['K','Heart'],    
 ]
 
-// class Card { constructor (suit, color, number){
-//         suit = suit;
-//         color = color;
-//         number = number;
-//     }
-//     color () {
-//         if (this.suit === Heart || this.suit === Diamond){
-//             color = 'red';
-//         }else {
-//             color = 'black';
-//         }
-//     }
-// }
 runGame();
 
 
@@ -120,7 +105,7 @@ function randomizeSuit(array){
     return cardDeck
 };
 
-function buildStacks(){
+function buildColumns(){
 let cardNumber = 52;
     for (let j = 0; j < 7; j++){
         for (let i = (0 + j); i < 7; i ++){  
@@ -195,16 +180,15 @@ function runGame() {
     shuffleDeck();
     console.log(`OG DECK - ${cardDeck}----`);
     buildUI(cardDeck);
-    buildStacks();
-    console.log
-    console.log(`STOCK STACK - ${stockStack}----`);
-    console.log(`STACK 1 -${tableau[0]}`);
-    console.log(`STACK 2 -${tableau[1]}`);
-    console.log(`STACK 3 -${tableau[2]}`);
-    console.log(`STACK 4 -${tableau[3]}`);
-    console.log(`STACK 5 -${tableau[4]}`);
-    console.log(`STACK 6 -${tableau[5]}`);
-    console.log(`STACK 7 -${tableau[6]}`);
+    buildColumns();
+    console.log(`STOCK Pile - ${stockStack}----`);
+    console.log(`Column 1 -${tableau[0]}`);
+    console.log(`Column 2 -${tableau[1]}`);
+    console.log(`Column 3 -${tableau[2]}`);
+    console.log(`Column 4 -${tableau[3]}`);
+    console.log(`Column 5 -${tableau[4]}`);
+    console.log(`Column 6 -${tableau[5]}`);
+    console.log(`Column 7 -${tableau[6]}`);
 }
 
 
