@@ -3,20 +3,19 @@ let cardDeck = [];
 //Declare game board variables.
 let stockStack = [];
 let wasteStack = [];
-// const gameBoard = [
-// let stackOne = [],
-// let stackTwo = [],
-// let stackThree = [],
-// let stackFour = [],
-// let stackFive = [],
-// let stackSix = [],
-// let stackSeven = [],
-// let spadeStack = [],
-// let clubStack = [],
-// let diamondStack = [],
-// let heartStack = [],
-// ];
-console.log(gameBoard);
+let stackOne = [];
+let stackTwo = [];
+let stackThree = [];
+let stackFour = [];
+let stackFive = [];
+let stackSix = [];
+let stackSeven = [];
+let spadeStack = [];
+let clubStack = [];
+let diamondStack = [];
+let heartStack = [];
+let gameBoard = [[stackOne], [stackTwo], [stackThree], [stackFour],
+                 [stackFive], [stackSix], [stackSeven]];
 
 
 //Declare suits
@@ -84,7 +83,6 @@ suits['hearts'] = [
     ['Q','Heart'],
     ['K','Heart'],    
 ]
-
 gameLoop();
 
 
@@ -110,19 +108,27 @@ function randomizeSuit(array){
 };
 
 function buildTable(){
-for (i = 0; i < 28; i ++){
-
-
-
+    let cardNumber = 52;
+    for (j = 0; j < 7; j++){
+        for (i = (0 + j); i < 7; i ++){
+        //console.log(`-----LOOP ${i} ${cardDeck}----`);
+        let tempHolderArray = cardDeck.splice((cardNumber-1),1);
+        console.log(`-----SPLICED VALUE: ${tempHolderArray}`);
+        gameBoard[i].splice([i],1,tempHolderArray);
+        console.log(`-----STACK${i+1}: ${gameBoard[i]}`);
+        cardNumber--;
+     } 
+}
+     console.log(gameBoard);
 }
 
-
-}
 
 //Run game function.
 function gameLoop() {
     shuffleDeck();
-    console.log(cardDeck);
+    console.log(`OG DECK - ${cardDeck}----`);
+    buildTable();
+    console.log(`AFTER DECK - ${cardDeck}----`);
 };
 
 
