@@ -16,12 +16,13 @@ let diamondStack = [];
 let heartStack = [];
 let tableau = [[stackOne], [stackTwo], [stackThree], [stackFour],
                  [stackFive], [stackSix], [stackSeven]];
-
+                 
+//Grabbing the card images 
 
 //Declare suits
 let suits = [];
 suits['spades'] = [
-    ['A','Spade'],
+    ['A','Spade', ],
     ['2', 'Spade'],
     ['3', 'Spade'],
     ['4', 'Spade'],
@@ -35,7 +36,6 @@ suits['spades'] = [
     ['Q', 'Spade'],
     ['K', 'Spade'],
 ]
-
 suits['clubs'] = [
     ['A','Club'],
     ['2','Club'],
@@ -51,7 +51,6 @@ suits['clubs'] = [
     ['Q','Club'],
     ['K','Club'],
 ]
-
 suits['diamonds'] = [
     ['A','Diamond'],
     ['2','Diamond'],
@@ -67,7 +66,6 @@ suits['diamonds'] = [
     ['Q','Diamond'],
     ['K','Diamond'],
 ]
-
 suits['hearts'] = [
     ['A','Heart'],
     ['2','Heart'],
@@ -83,7 +81,9 @@ suits['hearts'] = [
     ['Q','Heart'],
     ['K','Heart'],    
 ]
-gameLoop();
+
+
+runGame();
 
 
 
@@ -99,16 +99,16 @@ randomizeSuit(suits.spades);
 //Shuffles each suit set. 
 function randomizeSuit(array){
     //console.log(`RANDOMIZE FUNCTION LENGTH = ${array.length}`)
-    while(array.length){
-        const random = Math.floor(Math.random() * array.length);
-        const randomTwo = Math.floor(Math.random() * 53);
-        let randomArrayElement = array.splice(random, 1)[0];
-        cardDeck.splice(randomTwo,0,randomArrayElement);
-    }
+        while(array.length){
+            const random = Math.floor(Math.random() * array.length);
+            const randomTwo = Math.floor(Math.random() * 53);
+            let randomArrayElement = array.splice(random, 1)[0];
+            cardDeck.splice(randomTwo,0,randomArrayElement);
+         }
     return cardDeck
 };
 
-function buildTable(){
+function buildStacks(){
 let cardNumber = 52;
     for (j = 0; j < 7; j++){
         for (i = (0 + j); i < 7; i ++){  
@@ -120,15 +120,20 @@ let cardNumber = 52;
         cardNumber--;
          }     
     }
-    stockStack = cardDeck;
+stockStack = cardDeck;
+}
+
+function buildUI(){
+
 }
 
 
+
 //Run game function.
-function gameLoop() {
+function runGame() {
     shuffleDeck();
     console.log(`OG DECK - ${cardDeck}----`);
-    buildTable();
+    buildStacks();
     console.log
     console.log(`STOCK STACK - ${stockStack}----`);
     console.log(`STACK 1 -${tableau[0]}`);
