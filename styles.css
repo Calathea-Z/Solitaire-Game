@@ -18,7 +18,7 @@ nav {
 }
 
 div {
-    border: solid blue 2px;
+    /* border: solid blue 2px; */
 }
 
 .game-board {
@@ -66,10 +66,38 @@ div {
 }
 
 .card-stack-area{
+    border: 2px solid black;
     width: 100px;
     height: 180px;
     border-radius: 6px;
     background-color: rgb(205, 204, 204);
     opacity: .9;
 }
+
+.front{
+        border: 2px solid black;
+        width: 100px;
+        height: 180px;
+        border-radius: 6px;
+        background-color: rgb(255, 249, 249);
+        opacity: .9;
+    }
+
+    .test {
+        border: 2px solid black;
+        background-color: aquamarine;
+        width: 100px;
+        height: 180px;
+        border-radius: 6px;
+    }
+
+    .back {
+    border: 2px solid black;
+    background-image: url(./back_side.png);
+    width: 100px;
+    height: 180px;
+    border-radius: 6px;
+    background-repeat: no-repeat;
+    background-position: center;
+    }
 

@@ -100,7 +100,7 @@ function randomizeSuit(array){
          }
     return cardDeck
 };
-
+// builds each column on gameboard. 
 function buildColumns(){
 let cardNumber = 52;
     for (let j = 0; j < 7; j++){
@@ -116,37 +116,48 @@ let cardNumber = 52;
 stockStack = cardDeck;
 }
 
+
+// assigns card graphics to each card
 function buildUI(deck){
-let temp = document.querySelector('#stock-stack');   
-    console.log(temp);
+let temp = document.querySelector('#stock-stack');
+    for(let j = 0; j < deck.length; j++){
+        let whole = document.createElement('div')
+        whole.className = 'whole-card'
+        whole.setAttribute('id', `card ${j}`);
+        temp.appendChild(whole)
+    }
+
+let tempTwo = document.querySelectorAll('.whole-card');
+let tempArray = [...tempTwo];
+console.log(tempArray);
 
     for(let i =0 ; i < deck.length; i++){
-    
-        console.log(deck.length);
-        console.log(cardDeck[i][0]);
-        console.log(cardDeck[i][1]);
-        
-        
-        let card = document.createElement('div');
+        //console.log(cardDeck[i][0]);
+        //console.log(cardDeck[i][1]);    
+        let front = document.createElement('div');
+        let back = document.createElement('div');
+       // console.log(`LOOP ---- ${i}----`);
         let emoji = '';
             if(deck[i][1] === 'Diamond'){
                 emoji = '♦️';
-                card.style.color = 'red';
+                front.style.color = 'red';
             }else if (deck[i][1] === 'Spade'){
                 emoji = '♠️';
-                card.style.color = 'black';
+                front.style.color = 'black';
             }else if (deck[i][1] === 'Heart'){
                 emoji = '♥️';
-                card.style.color = 'red';
+                front.style.color = 'red';
             }else if (deck[i][1] === 'Club'){
                 emoji = '♣️';
-                card.style.color = 'black'
+                front.style.color = 'black'
             }
-                card.innerText = (deck[i][0] + ' ' + emoji);
-                card.className = 'card-stack-area';
-                console.log(card.innerText);
-                console.log(card);
-                temp.appendChild(card);
+                front.innerText = (deck[i][0] + ' ' + emoji);
+                front.className = 'front';
+                back.className = 'back';
+                //console.log(card.innerText);
+                //console.log(card);
+                tempArray[i].appendChild(front);
+                tempArray[i].appendChild(back);
     }
 }
 
