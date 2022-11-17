@@ -1,21 +1,21 @@
 //Declare deck
 let cardDeck = [];
 //Declare game board variables.
-let stockStack = [];
-let wasteStack = [];
-let stackOne = [];
-let stackTwo = [];
-let stackThree = [];
-let stackFour = [];
-let stackFive = [];
-let stackSix = [];
-let stackSeven = [];
-let spadeStack = [];
-let clubStack = [];
-let diamondStack = [];
-let heartStack = [];
-let tableau = [[stackOne], [stackTwo], [stackThree], [stackFour],
-                 [stackFive], [stackSix], [stackSeven]];
+let columnDraw = [];
+let columnDiscard = [];
+let columnOne = [];
+let columnTwo = [];
+let columnThree = [];
+let columnFour = [];
+let columnFive = [];
+let columnSix = [];
+let columnSeven = [];
+let columnSpade = [];
+let columnClub = [];
+let columnDiamond = [];
+let columnHeart = [];
+let tableau = [[columnOne], [columnTwo], [columnThree], [columnFour],
+                 [columnFive], [columnSix], [columnSeven]];
 
 //Declare suits // Check against these to win.
 let suits = [];
@@ -82,9 +82,6 @@ suits['hearts'] = [
 
 runGame();
 
-
-
-
 //Shuffles the deck. 
 function shuffleDeck(){
 randomizeSuit(suits.clubs);
@@ -95,7 +92,6 @@ randomizeSuit(suits.spades);
 
 //Shuffles each suit set. 
 function randomizeSuit(array){
-    //console.log(`RANDOMIZE FUNCTION LENGTH = ${array.length}`)
         while(array.length){
             const random = Math.floor(Math.random() * array.length);
             const randomTwo = Math.floor(Math.random() * 53);
@@ -110,9 +106,9 @@ let cardNumber = 52;
     for (let j = 0; j < 7; j++){
         for (let i = (0 + j); i < 7; i ++){  
         //console.log(`-----LOOP ${i} ${cardDeck}----`);
-        let tempHolderArray = cardDeck.splice((cardNumber-1),1);
+        let tempArray = cardDeck.splice((cardNumber-1),1);
         //console.log(`-----SPLICED VALUE: ${tempHolderArray}`);
-        tableau[i].splice([j],1,tempHolderArray);
+        tableau[i].splice([j],1,tempArray);
         //console.log(`STACK${i+1}----: ${gameBoard[i]}`);
         cardNumber--;
          }     
@@ -153,27 +149,6 @@ let temp = document.querySelector('#stock-stack');
                 temp.appendChild(card);
     }
 }
-
-// function buildUI(deck){
-//     document.getElementById("deck").innerHTML = '';
-    
-//     for(let i = 0; i < cardDeck.length; i++){
-//         let card = document.createElement('div');
-//         let value = document.createElement('div');
-//         let suit = document.createElement('div');
-//         card.className = "card-stack-area";
-//         value.className = "card-stack-area";
-//         suit.className = "card-stack-area" + cardDeck[i][0];
-
-//         value.innerHTML = cardDeck[i][1];
-//         card.appendChild(value);
-//         card.appendChild(suit);
-
-//         document.getElementById("deck").appendChild(card);
-//     }
-        
-//     } 
-// }
 
 //Run game function.
 function runGame() {

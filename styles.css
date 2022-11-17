@@ -47,6 +47,16 @@ div {
     gap: 5px;
 }
 
+#spade-column, #club-column, #heart-column, #diamond-column {
+    display: flex;
+    flex: 1 1 0px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: rgb(205, 204, 204);
+    opacity: .6;
+}
+
 .row-two {
     display: flex;
     justify-content: center;
@@ -59,6 +69,7 @@ div {
     width: 100px;
     height: 180px;
     border-radius: 6px;
-    background-color:rgb(244, 244, 244);
-    color: red;
+    background-color: rgb(205, 204, 204);
+    opacity: .9;
 }
+
