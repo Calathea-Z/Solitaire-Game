@@ -1,3 +1,12 @@
+//grabbers
+let gameBoard = document.querySelector('.game-board');
+let draw = document.querySelector('#stock-stack');
+let discard = document.querySelector('#waste-stack');
+let winArea = document.querySelector('.row-one-right');
+let tableGrab = document.querySelector('row-two');
+
+
+
 //Declare deck
 let cardDeck = [];
 //Declare game board variables.
@@ -14,7 +23,7 @@ let columnSpade = [];
 let columnClub = [];
 let columnDiamond = [];
 let columnHeart = [];
-let tableau = [[columnOne], [columnTwo], [columnThree], [columnFour],
+let table = [[columnOne], [columnTwo], [columnThree], [columnFour],
                  [columnFive], [columnSix], [columnSeven]];
 
 //Declare suits // Check against these to win.
@@ -82,6 +91,17 @@ suits['hearts'] = [
 
 runGame();
 
+//Shuffles each suit set. 
+function randomizeSuit(array){
+    while(array.length){
+        const random = Math.floor(Math.random() * array.length);
+        const randomTwo = Math.floor(Math.random() * 53);
+        let randomArrayElement = array.splice(random, 1)[0];
+        cardDeck.splice(randomTwo,0,randomArrayElement);
+     }
+return cardDeck
+};
+
 //Shuffles the deck. 
 function shuffleDeck(){
 randomizeSuit(suits.clubs);
@@ -90,16 +110,7 @@ randomizeSuit(suits.hearts);
 randomizeSuit(suits.spades);
 };
 
-//Shuffles each suit set. 
-function randomizeSuit(array){
-        while(array.length){
-            const random = Math.floor(Math.random() * array.length);
-            const randomTwo = Math.floor(Math.random() * 53);
-            let randomArrayElement = array.splice(random, 1)[0];
-            cardDeck.splice(randomTwo,0,randomArrayElement);
-         }
-    return cardDeck
-};
+
 // builds each column on gameboard. 
 function buildColumns(){
 let cardNumber = 52;
@@ -108,14 +119,14 @@ let cardNumber = 52;
         //console.log(`-----LOOP ${i} ${cardDeck}----`);
         let tempArray = cardDeck.splice((cardNumber-1),1);
         //console.log(`-----SPLICED VALUE: ${tempHolderArray}`);
-        tableau[i].splice([j],1,tempArray);
+        table[i].splice([j],1,tempArray);
         //console.log(`STACK${i+1}----: ${gameBoard[i]}`);
         cardNumber--;
          }     
     }
-stockStack = cardDeck;
+    stockStack = cardDeck;
+    return stockStack
 }
-
 
 // assigns card graphics to each card
 function buildUI(deck){
@@ -127,7 +138,7 @@ let temp = document.querySelector('#stock-stack');
         whole.setAttribute('id', `card ${j}`);
         temp.appendChild(whole)
     }
-//appends actual sides of card.
+//build sides of card.
 let tempTwo = document.querySelectorAll('.whole-card');
 let tempArray = [...tempTwo];
 console.log(tempArray);
@@ -163,10 +174,31 @@ console.log(tempArray);
     }
 }
 
-//building dom / draggable abilities with jquery
-$(function() {
-    $('.whole-card').draggable();
-});
+function updateColumns(){
+    let i = document.querySelector('#stock-stack');
+    let children = i.children
+    console.log(children);
+    let j = 0;
+
+        for (let k = 0; k < 7; k++){
+
+            
+    }
+}
+
+
+
+
+
+
+
+
+// //building dom / draggable abilities with jquery
+// $(function() {
+//     $('.whole-card').draggable();
+//     $('.whole-card').click(function() {flip});
+// });
+
 
 //Run game function.
 function runGame() {
@@ -175,13 +207,13 @@ function runGame() {
     buildUI(cardDeck);
     buildColumns();
     console.log(`STOCK Pile - ${stockStack}----`);
-    console.log(`Column 1 -${tableau[0]}`);
-    console.log(`Column 2 -${tableau[1]}`);
-    console.log(`Column 3 -${tableau[2]}`);
-    console.log(`Column 4 -${tableau[3]}`);
-    console.log(`Column 5 -${tableau[4]}`);
-    console.log(`Column 6 -${tableau[5]}`);
-    console.log(`Column 7 -${tableau[6]}`);
+    console.log(`Column 1 -${table[0]}`);
+    console.log(`Column 2 -${table[1]}`);
+    console.log(`Column 3 -${table[2]}`);
+    console.log(`Column 4 -${table[3]}`);
+    console.log(`Column 5 -${table[4]}`);
+    console.log(`Column 6 -${table[5]}`);
+    console.log(`Column 7 -${table[6]}`);
 }
 
 
