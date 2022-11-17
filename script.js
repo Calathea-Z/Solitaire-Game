@@ -119,6 +119,7 @@ stockStack = cardDeck;
 
 // assigns card graphics to each card
 function buildUI(deck){
+//build container div so the card can be flippable.
 let temp = document.querySelector('#stock-stack');
     for(let j = 0; j < deck.length; j++){
         let whole = document.createElement('div')
@@ -126,7 +127,7 @@ let temp = document.querySelector('#stock-stack');
         whole.setAttribute('id', `card ${j}`);
         temp.appendChild(whole)
     }
-
+//appends actual sides of card.
 let tempTwo = document.querySelectorAll('.whole-card');
 let tempArray = [...tempTwo];
 console.log(tempArray);
@@ -161,6 +162,11 @@ console.log(tempArray);
                 tempArray[i].appendChild(back);
     }
 }
+
+//building dom / draggable abilities with jquery
+$(function() {
+    $('.whole-card').draggable();
+});
 
 //Run game function.
 function runGame() {
