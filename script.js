@@ -156,6 +156,7 @@ console.log(tempArray);
                 back.className = 'back';
                 //console.log(card.innerText);
                 //console.log(card);
+                
                 tempArray[i].appendChild(front);
                 tempArray[i].appendChild(back);
     }
