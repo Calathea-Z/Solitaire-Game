@@ -104,9 +104,6 @@ suits['hearts'] = [
     ['K','Heart'],    
 ]
 
-    createDeck(cardDeck)
-
-
 runGame();
 
 //Shuffles each suit set. 
