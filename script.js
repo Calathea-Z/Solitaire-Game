@@ -24,7 +24,22 @@ let columnClub = [];
 let columnDiamond = [];
 let columnHeart = [];
 let table = [[columnOne], [columnTwo], [columnThree], [columnFour],
-                 [columnFive], [columnSix], [columnSeven]];
+                 [columnFive], [columnSix], [columnSeven], [columnDraw]];
+
+
+
+
+
+
+
+
+
+
+
+
+ //global variables
+ 
+ let cardCounter = 0;
 
 //Declare suits // Check against these to win.
 let suits = [];
@@ -89,6 +104,9 @@ suits['hearts'] = [
     ['K','Heart'],    
 ]
 
+    createDeck(cardDeck)
+
+
 runGame();
 
 //Shuffles each suit set. 
@@ -113,108 +131,110 @@ randomizeSuit(suits.spades);
 
 // builds each column on gameboard. 
 function buildColumns(){
-let cardNumber = 52;
-    for (let j = 0; j < 7; j++){
-        for (let i = (0 + j); i < 7; i ++){  
-        //console.log(`-----LOOP ${i} ${cardDeck}----`);
-        let tempArray = cardDeck.splice((cardNumber-1),1);
-        //console.log(`-----SPLICED VALUE: ${tempHolderArray}`);
-        table[i].splice([j],1,tempArray);
-        //console.log(`STACK${i+1}----: ${gameBoard[i]}`);
-        cardNumber--;
-         }     
+    let cardNumber = 52;
+        for (let j = 0; j < 7; j++){
+            for (let i = (0 + j); i < 7; i ++){  
+            //console.log(`-----LOOP ${i} ${cardDeck}----`);
+            let tempArray = cardDeck.splice((cardNumber-1),1);
+            //console.log(`-----SPLICED VALUE: ${tempHolderArray}`);
+            table[i].splice([j],1,tempArray);
+            //console.log(`STACK${i+1}----: ${gameBoard[i]}`);
+            cardNumber--;
+             }     
+        }
+        stockStack = cardDeck;
+        return stockStack
     }
-    stockStack = cardDeck;
-    return stockStack
-}
-
-// assigns card graphics to each card
-function buildUI(deck){
-//build container div so the card can be flippable.
-let temp = document.querySelector('#stock-stack');
-    for(let j = 0; j < deck.length; j++){
-        let whole = document.createElement('div')
-        whole.className = 'whole-card'
-        whole.setAttribute('id', `card ${j}`);
-        temp.appendChild(whole)
+    
+    // assigns card graphics to each card
+    function buildUI(deck){
+    //build container div so the card can be flippable.
+    let temp = document.querySelector('#stock-stack');
+        for(let j = 0; j < deck.length; j++){
+            let whole = document.createElement('div')
+            whole.className = 'whole-card'
+            whole.setAttribute('id', `card ${j}`);
+            temp.appendChild(whole)
+        }
+    //build sides of card.
+    let tempTwo = document.querySelectorAll('.whole-card');
+    let tempArray = [...tempTwo];
+    console.log(tempArray);
+    
+        for(let i =0 ; i < deck.length; i++){
+            //console.log(cardDeck[i][0]);
+            //console.log(cardDeck[i][1]);    
+            let front = document.createElement('div');
+            let back = document.createElement('div');
+           // console.log(`LOOP ---- ${i}----`);
+            let emoji = '';
+                if(deck[i][1] === 'Diamond'){
+                    emoji = '♦️';
+                    front.style.color = 'red';
+                }else if (deck[i][1] === 'Spade'){
+                    emoji = '♠️';
+                    front.style.color = 'black';
+                }else if (deck[i][1] === 'Heart'){
+                    emoji = '♥️';
+                    front.style.color = 'red';
+                }else if (deck[i][1] === 'Club'){
+                    emoji = '♣️';
+                    front.style.color = 'black'
+                }
+                    front.innerText = (deck[i][0] + ' ' + emoji);
+                    front.className = 'front';
+                    back.className = 'back';
+                    //console.log(card.innerText);
+                    //console.log(card);
+                    
+                    tempArray[i].appendChild(front);
+                    tempArray[i].appendChild(back);
+        }
     }
-//build sides of card.
-let tempTwo = document.querySelectorAll('.whole-card');
-let tempArray = [...tempTwo];
-console.log(tempArray);
 
-    for(let i =0 ; i < deck.length; i++){
-        //console.log(cardDeck[i][0]);
-        //console.log(cardDeck[i][1]);    
-        let front = document.createElement('div');
-        let back = document.createElement('div');
-       // console.log(`LOOP ---- ${i}----`);
-        let emoji = '';
-            if(deck[i][1] === 'Diamond'){
-                emoji = '♦️';
-                front.style.color = 'red';
-            }else if (deck[i][1] === 'Spade'){
-                emoji = '♠️';
-                front.style.color = 'black';
-            }else if (deck[i][1] === 'Heart'){
-                emoji = '♥️';
-                front.style.color = 'red';
-            }else if (deck[i][1] === 'Club'){
-                emoji = '♣️';
-                front.style.color = 'black'
-            }
-                front.innerText = (deck[i][0] + ' ' + emoji);
-                front.className = 'front';
-                back.className = 'back';
-                //console.log(card.innerText);
-                //console.log(card);
+    console.log(table[0]);
+    
+    // function updateColumns(){
+    //     let i = document.querySelector('#board-stack-one');
+
+    //     console.log(children);
+    //     let j = 0;
+    
+    //         for (let k = 0; k < 7; k++){
+    
                 
-                tempArray[i].appendChild(front);
-                tempArray[i].appendChild(back);
+    //     }
+    // }
+    
+    
+    
+    
+    
+    
+    
+    
+    // //building dom / draggable abilities with jquery
+    // $(function() {
+    //     $('.whole-card').draggable();
+    //     $('.whole-card').click(function() {flip});
+    // });
+    
+    
+    //Run game function.
+    function runGame() {
+        shuffleDeck();
+        console.log(`OG DECK - ${cardDeck}----`);
+        buildUI(cardDeck);
+        buildColumns();
+        console.log(`STOCK Pile - ${stockStack}----`);
+        console.log(`Column 1 -${table[0]}`);
+        console.log(`Column 2 -${table[1]}`);
+        console.log(`Column 3 -${table[2]}`);
+        console.log(`Column 4 -${table[3]}`);
+        console.log(`Column 5 -${table[4]}`);
+        console.log(`Column 6 -${table[5]}`);
+        console.log(`Column 7 -${table[6]}`);
     }
-}
-
-function updateColumns(){
-    let i = document.querySelector('#stock-stack');
-    let children = i.children
-    console.log(children);
-    let j = 0;
-
-        for (let k = 0; k < 7; k++){
-
-            
-    }
-}
-
-
-
-
-
-
-
-
-// //building dom / draggable abilities with jquery
-// $(function() {
-//     $('.whole-card').draggable();
-//     $('.whole-card').click(function() {flip});
-// });
-
-
-//Run game function.
-function runGame() {
-    shuffleDeck();
-    console.log(`OG DECK - ${cardDeck}----`);
-    buildUI(cardDeck);
-    buildColumns();
-    console.log(`STOCK Pile - ${stockStack}----`);
-    console.log(`Column 1 -${table[0]}`);
-    console.log(`Column 2 -${table[1]}`);
-    console.log(`Column 3 -${table[2]}`);
-    console.log(`Column 4 -${table[3]}`);
-    console.log(`Column 5 -${table[4]}`);
-    console.log(`Column 6 -${table[5]}`);
-    console.log(`Column 7 -${table[6]}`);
-}
-
+    
 
 

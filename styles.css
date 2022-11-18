@@ -81,8 +81,8 @@ div {
     position: relative;
 }
 
-.card-stack-area:onclick .whole-card, .card-stack-area.onclick .whole-card {
-        transform: rotateY(180deg); */
+.card-stack-area:hover .whole-card, .card-stack-area.hover .whole-card {
+        transform: rotateY(180deg); 
 }
 
 .back, .front {
